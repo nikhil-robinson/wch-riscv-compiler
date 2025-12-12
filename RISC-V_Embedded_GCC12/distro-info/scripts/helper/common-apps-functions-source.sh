@@ -2297,7 +2297,7 @@ function build_cross_gcc_first()
               config_options+=("--enable-multilib") # Arm
               config_options+=("--with-multilib-list=${GCC_MULTILIB_LIST}")  # Arm
             fi
-          elif [ "${GCC_TARGET}" == "riscv-none-elf" ]
+          elif [ "${GCC_TARGET}" == "riscv-wch-elf" ]
           then
             config_options+=("--with-abi=${GCC_ABI}")
             config_options+=("--with-arch=${GCC_ARCH}")
@@ -2488,7 +2488,7 @@ function build_cross_newlib()
 
             config_options+=("--enable-newlib-io-long-long") # Arm, AArch64
             config_options+=("--enable-newlib-mb") # Arm, AArch64
-            config_options+=("--enable-newlib-reent-check-verify") # Arm, AArch64
+            config_options+=("--disable-newlib-reent-check-verify") # Arm, AArch64
 
             config_options+=("--enable-newlib-register-fini") # Arm
 
@@ -2531,7 +2531,7 @@ function build_cross_newlib()
             config_options+=("--enable-newlib-global-atexit") # Arm
             config_options+=("--enable-newlib-nano-formatted-io") # Arm
             config_options+=("--enable-newlib-nano-malloc") # Arm
-            config_options+=("--enable-newlib-reent-check-verify") # Arm
+            config_options+=("--disable-newlib-reent-check-verify") # Arm
             config_options+=("--enable-newlib-reent-small") # Arm
 
             config_options+=("--enable-newlib-retargetable-locking") # Arm
@@ -2898,7 +2898,7 @@ function build_cross_gcc_final()
               config_options+=("--enable-multilib") # Arm
               config_options+=("--with-multilib-list=${GCC_MULTILIB_LIST}")  # Arm
             fi
-          elif [ "${GCC_TARGET}" == "riscv-none-elf" ]
+          elif [ "${GCC_TARGET}" == "riscv-wch-elf" ]
           then
             config_options+=("--with-abi=${GCC_ABI}")
             config_options+=("--with-arch=${GCC_ARCH}")
@@ -3146,9 +3146,9 @@ function test_cross_gcc()
       elif [ "${GCC_TARGET}" == "aarch64-none-elf" ]
       then
         specs="-specs=rdimon.specs"
-      elif [ "${GCC_TARGET}" == "riscv-none-elf" ]
+      elif [ "${GCC_TARGET}" == "riscv-wch-elf" ]
       then
-        specs="-specs=semihost.specs"
+        specs="-specs=nosys.specs"
       else
         specs="-specs=nosys.specs"
       fi
